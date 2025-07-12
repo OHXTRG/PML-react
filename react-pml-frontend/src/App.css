@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
+.appMain {
+  height: calc(100vh - 64px);
+  width: 100%;
+  margin-top: 64px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* add note page  */
+
+.AddNotesForm {
+  /* min-height: calc(100vh - 64px); */
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.AddNotesForm .wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  max-width: 500px;
+  margin: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.AddNotesForm .wrapper h3 {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.AddNotesForm .wrapper .form-elements {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.AddNotesForm .wrapper .form-elements .form-control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* quill editor div  */
+
+.quill .ql-container {
+  overflow: auto;
+  height: 150px;
+  max-height: 150px;
 }

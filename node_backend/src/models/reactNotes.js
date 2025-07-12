@@ -14,8 +14,7 @@ const ReactNotesSchema = mongoose.Schema({
     require: false,
   },
   tags: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: "reactNotesTags",
+    type: [String],
     require: true,
   },
 });

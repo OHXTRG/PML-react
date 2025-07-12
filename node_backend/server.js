@@ -2,10 +2,14 @@ const dotenv = require("dotenv");
 const path = require("path");
 const environment = process.env.NODE_ENV;
 console.log(`using environment ${environment}`);
-const envPath = path.resolve(`.env.${environment}`);
-dotenv.config({
-  path: envPath,
-});
+if (environment) {
+  const envPath = path.resolve(`.env.${environment}`);
+  dotenv.config({
+    path: envPath,
+  });
+} else {
+  dotenv.config();
+}
 const { connectMongoDb } = require("./db/mongoDb");
 const app = require("./app");
 const initSocket = require("./socket/socket");
