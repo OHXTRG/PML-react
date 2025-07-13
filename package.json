@@ -1,7 +1,7 @@
 {
   "name": "pml-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "React Notes",
   "homepage": "https://github.com/OHXTRG/PML-react#readme",
   "bugs": {
     "url": "https://github.com/OHXTRG/PML-react/issues"
@@ -15,7 +15,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd react-pml-frontend && npm ci && npm run build && cp -r build ../node_backend/client",
+    "start": "cd node_backend && npm ci && npm run server"
   },
   "dependencies": {
     "express": "^5.1.0",

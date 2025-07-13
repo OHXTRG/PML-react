@@ -4,7 +4,7 @@ export const fetchNotesData = () => async (dispatch) => {
   dispatch({ type: "FETCH_NOTES_REQUEST" });
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_API_URL}/getAllReactNotes`
+      `${process.env.REACT_APP_API_URL}getAllReactNotes`
     );
     console.log(response, "kjaslfkj");
     if (response.data.success) {

@@ -11,7 +11,7 @@ const reactNotesRouter = require("./src/routes/reactNotesRoutes");
 
 // middleware
 app.use("/uploads", express.static(path.resolve(__dirname, "uploads")));
-app.use(express.static(path.resolve(__dirname, "client")));
+app.use(express.static(path.resolve(__dirname, "client", "build")));
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -34,7 +34,7 @@ app.use("/api", reactNotesRouter);
 app.use(errorHandler);
 
 app.get("*client", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "index.html"));
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 // routes
