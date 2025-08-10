@@ -14,34 +14,15 @@ const Home = () => {
     validationSchema: Yup.object({
       search: Yup.string().required("Fill the search"),
     }),
-    onSubmit: async (values) => {
-      // console.log("form submited ", values);
-      // try {
-      //   setLoading(true);
-      //   const data = await createNote(values);
-      //   // console.log(data, "jdslfjsadf api repsonse");
-      //   if (data.success) {
-      //     toast.success(data.message);
-      //   } else {
-      //     toast.error(data.message);
-      //   }
-      // } catch (error) {
-      //   console.log(error, "kdsjflkasdjflk error in catch");
-      //   toast.error("!error");
-      // } finally {
-      //   setLoading(false);
-      // }
-    },
+    onSubmit: async (values) => {},
   });
   return (
     <>
-      <Header />
-      <Box>
-        {/* <CustomAutoComplete options={[]} formik={formik} /> */}
+      {/* <Box>
         <Textfield />
         <Button onClick={() => navigate("addNotes")}>Add Notes</Button>
-      </Box>
-      <NotesComponents />
+      </Box> */}
+      {/* <NotesComponents /> */}
     </>
   );
 };

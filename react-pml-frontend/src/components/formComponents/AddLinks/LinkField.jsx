@@ -18,7 +18,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   },
   "& .MuiInputBase-root": {
     borderRadius: 8,
-    backgroundColor: "#f9f9f9",
+    // backgroundColor: "#f9f9f9",
   },
   "& .MuiOutlinedInput-root": {
     "& .MuiInputAdornment-root": {

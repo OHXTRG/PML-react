@@ -5,12 +5,21 @@ const {
   addReactNotes,
   getAllTags,
   getAllNotes,
+  deleteNote,
+  updateNote,
+  getNote,
 } = require("../controllers/reactNotesController");
 
-router.route("/addReactNotes").post(addReactNotes);
+router.route("/addNote").post(addReactNotes);
 
 router.route("/getAllTags").get(getAllTags);
 
-router.route("/getAllReactNotes").get(getAllNotes);
+router.route("/getAllNotes").get(getAllNotes);
+
+router.route("/deleteNote/:id").delete(deleteNote);
+
+router.route("/updateNote").post(updateNote);
+
+router.route("/getNote/:id").get(getNote);
 
 module.exports = router;

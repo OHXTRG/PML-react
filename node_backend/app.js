@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "DELETE"],
   })
 );
 app.use(express.json());
@@ -28,7 +28,7 @@ app.get("/test", (req, res) => {
 });
 
 // routes
-app.use("/api", reactNotesRouter);
+app.use("/api/react", reactNotesRouter);
 
 // error middle ware
 app.use(errorHandler);

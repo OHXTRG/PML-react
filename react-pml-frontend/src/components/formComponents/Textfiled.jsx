@@ -7,9 +7,18 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   "& label.Mui-focused": {
     color: theme.palette.primary.main,
   },
+
+  "& .MuiFormControl-root": {
+    width: "100%",
+  },
   "& .MuiInputBase-root": {
     borderRadius: 8,
-    backgroundColor: "#f9f9f9",
+    // backgroundColor: "#f9f9f9",
+    width: "100%",
+    // padding: "10px 14px",
+  },
+  "& .MuiInputBase-input": {
+    padding: "10px 14px",
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {

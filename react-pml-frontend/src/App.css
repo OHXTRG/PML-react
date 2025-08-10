@@ -1,7 +1,16 @@
+body {
+  color: #afafaf !important;
+}
+
 .appMain {
   height: calc(100vh - 64px);
   width: 100%;
   margin-top: 64px;
+}
+
+/* all button css  */
+.custom-button {
+  color: white;
 }
 
 /* add note page  */
@@ -43,4 +52,72 @@
   overflow: auto;
   height: 150px;
   max-height: 150px;
+}
+
+/* notes  */
+
+.notes-outter {
+  margin-top: 40px;
+  padding: 10px;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notes-outter .note-item-wrapper {
+  border: 1px solid rgba(61, 71, 81, 0.3);
+  border-radius: 12px;
+}
+
+.notes-outter .note-item-wrapper .title {
+  background-color: rgba(29, 33, 38, 0.1);
+  padding: 20px 20px 10px;
+  border-bottom: 1px solid rgba(61, 71, 81, 0.3);
+}
+
+.notes-outter .note-item-wrapper .tags {
+  padding: 10px 20px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  border-bottom: 1px solid rgba(61, 71, 81, 0.3);
+}
+
+.notes-outter .note-item-wrapper .note-outter {
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(61, 71, 81, 0.3);
+  background-color: rgb(17, 23, 29);
+  position: relative;
+  max-height: 150px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  transition: max-height 0.5s ease;
+}
+.notes-outter .note-item-wrapper .note-outter .more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.notes-outter .note-item-wrapper .note-outter div p {
+  margin: 0;
+  padding: 0;
+}
+
+.notes-outter .note-item-wrapper .imp-links {
+  padding: 10px 20px;
+}
+
+/* ///////////////////////////////////////// search bar  */
+
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.searchBox {
+  flex-grow: 1;
 }
