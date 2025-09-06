@@ -11,15 +11,14 @@ exports.addNotes = asyncWrapper(async (req, res, next) => {
 
   const noteModule = req.params.noteModule;
 
-  const noteModuleModel = getModuleModel(noteModule);
-
-  if (!noteModuleModel) {
-    res.status(404).json({
+  if (!(await collectionExists(noteModule))) {
+    return res.status(404).json({
       status: 404,
       success: false,
       message: `No note module with name ${noteModule} found`,
     });
   }
+  const noteModuleModel = getNoteModuleModel(noteModule);
 
   if (Array.isArray(tags)) {
     const newNote = await noteModuleModel.create({
@@ -95,15 +94,14 @@ exports.getAllNotes = asyncWrapper(async (req, res, next) => {
 exports.getNote = asyncWrapper(async (req, res, next) => {
   const noteModule = req.params.noteModule;
 
-  const noteModuleModel = getModuleModel(noteModule);
-
-  if (!noteModuleModel) {
-    res.status(404).json({
+  if (!(await collectionExists(noteModule))) {
+    return res.status(404).json({
       status: 404,
       success: false,
       message: `No note module with name ${noteModule} found`,
     });
   }
+  const noteModuleModel = getNoteModuleModel(noteModule);
 
   const id = req.params.id;
   console.log(id, "id klsdjflkdsjalkj");
@@ -122,15 +120,14 @@ exports.getNote = asyncWrapper(async (req, res, next) => {
 exports.deleteNote = asyncWrapper(async (req, res, next) => {
   const noteModule = req.params.noteModule;
 
-  const noteModuleModel = getModuleModel(noteModule);
-
-  if (!noteModuleModel) {
-    res.status(404).json({
+  if (!(await collectionExists(noteModule))) {
+    return res.status(404).json({
       status: 404,
       success: false,
       message: `No note module with name ${noteModule} found`,
     });
   }
+  const noteModuleModel = getNoteModuleModel(noteModule);
 
   const id = req.params.id;
   const delres = await noteModuleModel.deleteOne({ _id: id });
@@ -149,15 +146,14 @@ exports.deleteNote = asyncWrapper(async (req, res, next) => {
 exports.updateNote = asyncWrapper(async (req, res, next) => {
   const noteModule = req.params.noteModule;
 
-  const noteModuleModel = getModuleModel(noteModule);
-
-  if (!noteModuleModel) {
-    res.status(404).json({
+  if (!(await collectionExists(noteModule))) {
+    return res.status(404).json({
       status: 404,
       success: false,
       message: `No note module with name ${noteModule} found`,
     });
   }
+  const noteModuleModel = getNoteModuleModel(noteModule);
   const data = req.body;
   const updatedData = await noteModuleModel.updateOne(
     { _id: data.id },
@@ -182,15 +178,14 @@ exports.updateNote = asyncWrapper(async (req, res, next) => {
 exports.searchNote = asyncWrapper(async (req, res, next) => {
   const noteModule = req.params.noteModule;
 
-  const noteModuleModel = getModuleModel(noteModule);
-
-  if (!noteModuleModel) {
-    res.status(404).json({
+  if (!(await collectionExists(noteModule))) {
+    return res.status(404).json({
       status: 404,
       success: false,
       message: `No note module with name ${noteModule} found`,
     });
   }
+  const noteModuleModel = getNoteModuleModel(noteModule);
   const key = req.query.search || "";
   const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const tags = req.query.tag;

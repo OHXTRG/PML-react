@@ -25,7 +25,7 @@ const Note = ({ note, index }) => {
 
   return (
     <>
-      <Box className="note-outter" ref={noteRef}>
+      <Box className="note-outter" ref={noteRef} onClick={handleExtend}>
         <div
           key={index}
           ref={noteContent}
@@ -36,7 +36,10 @@ const Note = ({ note, index }) => {
         {bloading &&
         noteContent.current &&
         noteContent.current.offsetHeight > 150 ? (
-          <Button className="more" onClick={handleExtend}>
+          <Button
+            className="more"
+            //  onClick={handleExtend}
+          >
             {toggle ? "Close" : "Open"}
           </Button>
         ) : (
