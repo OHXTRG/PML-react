@@ -6,13 +6,21 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteModal from "../Modals/DeleteModal";
 import { DeleteNote } from "../../apis/DeleteNote";
 import { toast } from "react-toastify";
-const Title = ({ note }) => {
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { fetchNotesData } from "../../actions/notesActions";
+
+const Title = ({ note, noteModule }) => {
   const [deleteNote, setDeleteNote] = useState(false);
-  const handleDeleteNote = useCallback(async (id, api) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log(noteModule, "note module in titel scompmlenf");
+  const handleDeleteNote = useCallback(async (id, noteModule) => {
     try {
-      console.log(id, "dslfkjdlk");
-      const { data } = await DeleteNote(id, api);
+      const { data } = await DeleteNote(id, noteModule);
       if (data.success) {
+        //////////////////////////////////// refresh the notes data s
+        dispatch(fetchNotesData(noteModule));
         toast.success(data.message);
       } else {
         toast.error(data.message);
@@ -59,7 +67,7 @@ const Title = ({ note }) => {
               <IconButton onClick={() => setDeleteNote(true)}>
                 <DeleteIcon />
               </IconButton>
-              <IconButton>
+              <IconButton onClick={() => navigate(`edit-note/${note._id}`)}>
                 <EditIcon />
               </IconButton>
             </Box>
@@ -70,7 +78,7 @@ const Title = ({ note }) => {
       <DeleteModal
         open={deleteNote}
         handleClose={setDeleteNote}
-        callbackInput={{ data: note._id, api: "react/deleteNote" }}
+        callbackInput={{ data: note._id, noteModule: noteModule }}
         callBack={handleDeleteNote}
       />
     </>

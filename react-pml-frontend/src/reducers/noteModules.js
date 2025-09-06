@@ -4,20 +4,20 @@ const initialState = {
   error: null,
 };
 
-const notesReducer = (state = initialState, action) => {
+const noteModuleReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_NOTES_REQUEST":
+    case "FETCH_NOTE_MODULES_REQUEST":
       return {
         ...state,
         loading: true,
       };
-    case "FETCH_NOTES_SUCCESS":
+    case "FETCH_NOTE_MODULES_SUCCESS":
       return {
         ...state,
         loading: false,
         data: action.payload,
       };
-    case "FETCH_NOTES_FAILED":
+    case "FETCH_NOTE_MODULES_FAILED":
       return {
         ...state,
         loading: false,
@@ -31,4 +31,4 @@ const notesReducer = (state = initialState, action) => {
   }
 };
 
-export default notesReducer;
+export default noteModuleReducer;

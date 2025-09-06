@@ -1,4 +1,4 @@
-import { styled, TextField } from "@mui/material";
+import { backdropClasses, styled, TextField } from "@mui/material";
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   "& label": {
@@ -11,6 +11,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   "& .MuiFormControl-root": {
     width: "100%",
   },
+
   "& .MuiInputBase-root": {
     borderRadius: 8,
     // backgroundColor: "#f9f9f9",
@@ -21,6 +22,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     padding: "10px 14px",
   },
   "& .MuiOutlinedInput-root": {
+    padding: 0,
     "& fieldset": {
       borderColor: theme.palette.grey[400],
     },

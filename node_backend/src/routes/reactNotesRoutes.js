@@ -8,6 +8,7 @@ const {
   deleteNote,
   updateNote,
   getNote,
+  searchNote,
 } = require("../controllers/reactNotesController");
 
 router.route("/addNote").post(addReactNotes);
@@ -21,5 +22,7 @@ router.route("/deleteNote/:id").delete(deleteNote);
 router.route("/updateNote").post(updateNote);
 
 router.route("/getNote/:id").get(getNote);
+
+router.route("/search").get(searchNote);
 
 module.exports = router;

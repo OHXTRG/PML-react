@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Button } from "@mui/material";
 import DOMPurify from "dompurify";
 const Note = ({ note, index }) => {

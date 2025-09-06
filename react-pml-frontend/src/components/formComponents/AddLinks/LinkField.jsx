@@ -38,7 +38,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-const LinkField = ({ setLinks, id }) => {
+const LinkField = ({ setLinks, id, value, key }) => {
   const updateMap = () => {
     setLinks((prevMap) => {
       const newMap = new Map(prevMap);
@@ -67,7 +67,9 @@ const LinkField = ({ setLinks, id }) => {
           },
         }}
         data-id={id}
+        value={value}
         onChange={handleOnChange}
+        key={key}
       />
     </>
   );

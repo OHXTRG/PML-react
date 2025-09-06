@@ -1,14 +1,21 @@
-import { Button, IconButton, Typography, Box, Modal } from "@mui/material";
-import React from "react";
+import {
+  Button,
+  IconButton,
+  Typography,
+  Box,
+  Modal,
+  FormHelperText,
+} from "@mui/material";
+import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import Textfiled from "../formComponents/Textfiled";
 const mainBox = {
   display: "flex",
   flexDirection: "column",
   position: "absolute",
   top: "50%",
   left: "50%",
-  width: "300px",
-  maxWidth: "35dvw",
+  maxWidth: "50dvw",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
   border: "2px solid #000",
@@ -34,9 +41,14 @@ const bottomBar = {
 };
 
 const content = {
-  padding: "10px",
+  padding: "10px 20px 20px 20px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
 };
-const DeleteModal = ({ open, handleClose, callBack, callbackInput }) => {
+const DeleteNoteModule = ({ open, handleClose, callBack, callbackInput }) => {
+  const [confirmNoteModule, setConfirmNoteModule] = useState("");
+  const [error, setError] = useState("");
   return (
     <>
       <Modal
@@ -59,14 +71,33 @@ const DeleteModal = ({ open, handleClose, callBack, callbackInput }) => {
           </Box>
           <Box sx={content}>
             <Typography component={"p"} sx={{ fontSize: "20px" }}>
-              Please confirm!!
+              Please Type the Note Module Name "{callbackInput.noteModule}"
             </Typography>
+            <Textfiled
+              fullWidth
+              value={confirmNoteModule}
+              placeholder="Enter Note Module Name"
+              onChange={(e) => {
+                setError("");
+                setConfirmNoteModule(e.target.value);
+              }}
+            />
+            {error ? (
+              <FormHelperText sx={{ color: "red" }}>{error}</FormHelperText>
+            ) : (
+              ""
+            )}
           </Box>
           <Box sx={bottomBar}>
             <Button
-              onClick={() =>
-                callBack(callbackInput.data, callbackInput.noteModule)
-              }
+              onClick={() => {
+                if (confirmNoteModule.trim() == callbackInput.noteModule) {
+                  setError("");
+                  callBack(callbackInput.noteModule);
+                } else {
+                  setError("Please enter correct name");
+                }
+              }}
               sx={{ color: "red" }}
             >
               Yes
@@ -81,4 +112,4 @@ const DeleteModal = ({ open, handleClose, callBack, callbackInput }) => {
   );
 };
 
-export default DeleteModal;
+export default DeleteNoteModule;

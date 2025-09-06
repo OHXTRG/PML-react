@@ -9,12 +9,9 @@ const Index = ({ formik }) => {
   const [links, setLinks] = useState(new Map());
 
   const updateMap = () => {
-    // console.log("clicked");
     setLinks((prevMap) => {
-      //   console.log(prevMap, "kjdsflk");
       const newMap = new Map(prevMap);
       newMap.set(generateRandomId(), "");
-      //   console.log(newMap, "new map mapk");
       return newMap;
     });
   };
@@ -26,11 +23,18 @@ const Index = ({ formik }) => {
     );
   }, [links]);
 
-  // console.log(
-  //   links,
-  //   "jldskfjladskjf;=>--------------------array form ",
-  //   Array.from(links, ([key, value]) => ({ key, value }))
-  // );
+  useEffect(() => {
+    if (links.size == 0 && formik.values.impLinks.length > 0) {
+      setLinks(() => {
+        const map = new Map();
+        formik.values.impLinks.map((link) => {
+          map.set(generateRandomId(), link);
+        });
+        return map;
+      });
+    }
+  }, [formik.values.impLinks]);
+
   return (
     <>
       <Box>
@@ -41,7 +45,12 @@ const Index = ({ formik }) => {
       </Box>
       <Box className="form-control">
         {Array.from(links, ([key, value]) => ({ key, value })).map((obj) => (
-          <LinkField key={obj.key} setLinks={setLinks} id={obj.key} />
+          <LinkField
+            key={obj.key}
+            setLinks={setLinks}
+            id={obj.key}
+            value={obj.value}
+          />
         ))}
       </Box>
     </>

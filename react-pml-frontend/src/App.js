@@ -8,6 +8,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { ToastContainer } from "react-toastify";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import darkTheme from "./themes/darkTheme";
+import CustomContext from "./contextApi/context";
 
 const store = configureStore({ reducer: rootReducer });
 
@@ -17,9 +18,11 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Provider store={store}>
-          <ToastContainer />
-          <SocketUpdate />
-          <AppRoutes />
+          <CustomContext>
+            <ToastContainer />
+            <SocketUpdate />
+            <AppRoutes />
+          </CustomContext>
         </Provider>
       </ThemeProvider>
     </>

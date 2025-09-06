@@ -1,30 +1,31 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { getNote } from "../../apis/getNote";
 import {
-  TextField,
   Box,
   Button,
   Typography,
-  IconButton,
-  Stack,
-  styled,
   FormHelperText,
   Backdrop,
   CircularProgress,
 } from "@mui/material";
-import Autocomplete from "@mui/material/Autocomplete";
-import { Add, Delete } from "@mui/icons-material";
 import { useFormik } from "formik";
-import Textfield from "../components/formComponents/Textfiled";
-import Editor from "../components/Editor/MyEditor";
-import AddLinks from "../components/formComponents/AddLinks/Index";
-import CustomAutoComplete from "../components/formComponents/CustomAutoComplete";
+import Textfield from "../../components/formComponents/Textfiled";
+import Editor from "../../components/Editor/MyEditor";
+import AddLinks from "../../components/formComponents/AddLinks/Index";
+import CustomAutoComplete from "../../components/formComponents/CustomAutoComplete";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
-import { createNote } from "../apis/createNote";
+import { updateNote } from "../../apis/updateNote";
 import { toast } from "react-toastify";
 
-const AddNotes = () => {
+const EditReactNote = () => {
+  const params = useParams();
+  const id = params.id;
+  const allTags = useSelector((state) => state.allTags);
+
   const [loading, setLoading] = useState(false);
+
   const formik = useFormik({
     initialValues: { title: "", note: "", tags: [], impLinks: [] },
     validationSchema: Yup.object({
@@ -41,19 +42,17 @@ const AddNotes = () => {
           .required("Links can't be empty")
       ),
     }),
-    onSubmit: async (values) => {
-      // console.log("form submited ", values);
+    onSubmit: async (value) => {
       try {
         setLoading(true);
-        const data = await createNote(values);
-        // console.log(data, "jdslfjsadf api repsonse");
-        if (data.success) {
-          toast.success(data.message);
+        value.id = id;
+        const res = await updateNote(value);
+        if (res.success) {
+          toast.success(res.message);
         } else {
-          toast.error(data.message);
+          toast.error(res.message);
         }
       } catch (error) {
-        console.log(error, "kdsjflkasdjflk error in catch");
         toast.error("!error");
       } finally {
         setLoading(false);
@@ -61,11 +60,33 @@ const AddNotes = () => {
     },
   });
 
-  const allTags = useSelector((state) => state.allTags);
+  const setNote = useCallback(
+    async (id) => {
+      try {
+        const data = await getNote(id, "react/getNote");
+        console.log(data.data, "jflakdsjflksj");
+        if (data.success) {
+          formik.setFieldValue("title", data.data.title);
+          formik.setFieldValue("note", data.data.note);
+          formik.setFieldValue("tags", data.data.tags);
+          formik.setFieldValue("impLinks", data.data.impLinks);
+          setLoading(false);
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        console.log("error , ", error);
+        toast.error("!error");
+      }
+    },
+    [id]
+  );
 
-  // console.log(allTags.data, "jdslkfjaldsk");
+  useEffect(() => {
+    setLoading(true);
+    setNote(id);
+  }, []);
 
-  // console.log(formik.values, "jdslfjd", formik.errors);
   return (
     <>
       <Backdrop
@@ -76,7 +97,7 @@ const AddNotes = () => {
       </Backdrop>
       <Box className="AddNotesForm">
         <Box className="wrapper">
-          <Typography component="h3">Add Notes</Typography>
+          <Typography component="h3">Edit Notes</Typography>
           <form onSubmit={formik.handleSubmit}>
             <Box className="form-elements">
               {/* title  */}
@@ -131,7 +152,7 @@ const AddNotes = () => {
                 ""
               )}
 
-              <Button type="submit">Create Note</Button>
+              <Button type="submit">Edit Note</Button>
             </Box>
           </form>
         </Box>
@@ -140,4 +161,4 @@ const AddNotes = () => {
   );
 };
 
-export default AddNotes;
+export default EditReactNote;

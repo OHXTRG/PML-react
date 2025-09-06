@@ -7,14 +7,17 @@ function MyComponent({ formik }) {
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    // console.log(value);
     formik.setFieldValue("note", value);
   }, [value]);
 
+  useEffect(() => {
+    if (!value && formik.values.note) {
+      setValue(formik.values.note);
+    }
+  }, [formik.values.note]);
+
   return (
-    <ReactQuill theme="snow" value={value} onChange={setValue}>
-      {/* <div className="editor-div" /> */}
-    </ReactQuill>
+    <ReactQuill theme="snow" value={value} onChange={setValue}></ReactQuill>
   );
 }
 

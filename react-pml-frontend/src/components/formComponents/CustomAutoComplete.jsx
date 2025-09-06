@@ -8,7 +8,7 @@ const CustomAutoComplete = ({ options, formik }) => {
         multiple
         id="tags-filled"
         options={options}
-        defaultValue={[]}
+        value={formik.values.tags}
         freeSolo
         renderValue={(value, getItemProps) =>
           value.map((option, index) => {
@@ -24,16 +24,10 @@ const CustomAutoComplete = ({ options, formik }) => {
           })
         }
         onChange={(e, newValue) => {
-          console.log(newValue, "jdslkfjadsl");
           formik.setFieldValue("tags", newValue);
         }}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            // variant="filled"
-            // label="freeSolo"
-            placeholder="Add Tags"
-          />
+          <TextField {...params} placeholder="Add Tags" />
         )}
       />
     </div>
