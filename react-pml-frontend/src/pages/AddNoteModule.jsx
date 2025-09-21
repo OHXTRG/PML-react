@@ -33,6 +33,11 @@ const AddNoteModule = () => {
           "Please enter the Title that do not inclue special characters and white spaces",
           (value, testContext) =>
             value.match(/[.*+?^$&@!~`=,':"{}()|[\]\\\s]/g) == null
+        )
+        .test(
+          "valid-collection-name",
+          "Please enter 'es' at the end of the collection name",
+          (value, testcontext) => value.trim().slice(value.length - 2) == "es"
         ),
       description: Yup.string().required("Description is required"),
     }),

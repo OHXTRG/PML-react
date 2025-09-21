@@ -12,6 +12,7 @@ const ReactNotesHome = ({ noteModule }) => {
   useEffect(() => {
     dispatch(fetchNotesData(noteModule));
     dispatch(fetchAllTags(noteModule));
+    dispatch({ type: "EMPTY_SEARCH_STATE" });
   }, [noteModule]);
   return (
     <>

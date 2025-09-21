@@ -23,6 +23,13 @@ const searchReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case "EMPTY_SEARCH_STATE":
+      return {
+        ...state,
+        data: [],
+        loading: false,
+        error: null,
+      };
 
     default:
       return {

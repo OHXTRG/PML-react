@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Textfiled from "../formComponents/Textfiled";
 import { useNavigate } from "react-router";
 import { Button, Box } from "@mui/material";
@@ -38,6 +38,10 @@ const SearchBar = ({ noteModule }) => {
       setDeleteNoteModule(false);
     }
   };
+
+  useEffect(() => {
+    setSearchKey({ key: "", noteModule });
+  }, [noteModule]);
 
   return (
     <>

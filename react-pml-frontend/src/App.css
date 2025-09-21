@@ -131,3 +131,15 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+
+/* ////////////////// scroll bar  */
+
+::-webkit-scrollbar {
+  /* display: none; */
+  background-color: transparent;
+  width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  color: transparent;
+}
