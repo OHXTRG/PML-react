@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+// import { combineReducers } from "redux";
 import allTags from "./tagReducer";
 import reactNotes from "./notesReducer";
 import searchData from "./searchReducer";

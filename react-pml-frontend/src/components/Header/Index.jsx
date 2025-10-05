@@ -28,7 +28,7 @@ const Index = () => {
             >
               Notes
             </Button>
-            {noteModules.loading
+            {/* {noteModules.loading
               ? "...loading"
               : Array.isArray(noteModules.data) && noteModules.data.length > 0
               ? noteModules.data.map((module) => (
@@ -47,7 +47,7 @@ const Index = () => {
                     </Button>
                   </Box>
                 ))
-              : null}
+              : null} */}
 
             <Box>
               <Button
