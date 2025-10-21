@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import NotesComponents from "../../components/NotesComponents/Index";
+import NotesComponents from "../../../components/NotesComponents/Index";
 import { Box } from "@mui/material";
-import SearchBar from "../../components/ReactNotes/SearchBar";
+import SearchBar from "../../../components/SearchComponents/SearchBar";
 import { useDispatch } from "react-redux";
-import { fetchNotesData } from "../../actions/notesActions";
-import { fetchAllTags } from "../../actions/allTagActions";
+import { fetchNotesData } from "../../../actions/notesActions";
+import { fetchAllTags } from "../../../actions/allTagActions";
 
 const ReactNotesHome = ({ noteModule }) => {
   const dispatch = useDispatch();

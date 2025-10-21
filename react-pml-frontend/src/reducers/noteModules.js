@@ -2,6 +2,7 @@ const initialState = {
   data: null,
   loading: false,
   error: null,
+  searchData: [],
 };
 
 const noteModuleReducer = (state = initialState, action) => {
@@ -22,6 +23,27 @@ const noteModuleReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+
+    case "SEARCH_REQUEST":
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case "SEARCH_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        searchData: action.payload,
+      };
+
+    case "EMPTY_SEARCH":
+      return {
+        ...state,
+        error: null,
+        searchData: [],
+        loading: false,
       };
 
     default:

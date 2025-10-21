@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box, Button } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { generateRandomId } from "../../helper/commonFunction";
-import Textfield from "../Textfiled";
 import LinkField from "./LinkField";
 
 const Index = ({ formik }) => {

@@ -1,8 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Box, Stack, Chip, Link } from "@mui/material";
-import Note from "./Note";
-import Title from "./Title";
 import { useCustomContextHook } from "../../contextApi/context";
 import NoteBox from "./NoteBox";
 const Index = ({ noteModule }) => {

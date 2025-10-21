@@ -1,31 +1,30 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { getNote } from "../../apis/getNote";
+import React, { useState } from "react";
 import {
+  TextField,
   Box,
   Button,
   Typography,
+  IconButton,
+  Stack,
+  styled,
   FormHelperText,
   Backdrop,
   CircularProgress,
 } from "@mui/material";
 import { useFormik } from "formik";
-import Textfield from "../../components/formComponents/Textfiled";
-import Editor from "../../components/Editor/MyEditor";
-import AddLinks from "../../components/formComponents/AddLinks/Index";
-import CustomAutoComplete from "../../components/formComponents/CustomAutoComplete";
+import Textfield from "../../../components/formComponents/Textfiled";
+import Editor from "../../../components/Editor/MyEditor";
+import AddLinks from "../../../components/formComponents/AddLinks/Index";
+import CustomAutoComplete from "../../../components/formComponents/CustomAutoComplete";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
-import { updateNote } from "../../apis/updateNote";
+import { createNote } from "../../../apis/createNote";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
-const EditReactNote = () => {
-  const params = useParams();
-  const id = params.id;
-  const allTags = useSelector((state) => state.allTags);
-
+const AddNotes = ({ noteModule }) => {
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: { title: "", note: "", tags: [], impLinks: [] },
     validationSchema: Yup.object({
@@ -42,17 +41,18 @@ const EditReactNote = () => {
           .required("Links can't be empty")
       ),
     }),
-    onSubmit: async (value) => {
+    onSubmit: async (values) => {
       try {
         setLoading(true);
-        value.id = id;
-        const res = await updateNote(value);
-        if (res.success) {
-          toast.success(res.message);
+        const data = await createNote(values, noteModule);
+        if (data.success) {
+          toast.success(data.message);
+          navigate(`/notes/${noteModule}`);
         } else {
-          toast.error(res.message);
+          toast.error(data.message);
         }
       } catch (error) {
+        console.log(error, "kdsjflkasdjflk error in catch");
         toast.error("!error");
       } finally {
         setLoading(false);
@@ -60,32 +60,7 @@ const EditReactNote = () => {
     },
   });
 
-  const setNote = useCallback(
-    async (id) => {
-      try {
-        const data = await getNote(id, "react/getNote");
-        console.log(data.data, "jflakdsjflksj");
-        if (data.success) {
-          formik.setFieldValue("title", data.data.title);
-          formik.setFieldValue("note", data.data.note);
-          formik.setFieldValue("tags", data.data.tags);
-          formik.setFieldValue("impLinks", data.data.impLinks);
-          setLoading(false);
-        } else {
-          toast.error(data.message);
-        }
-      } catch (error) {
-        console.log("error , ", error);
-        toast.error("!error");
-      }
-    },
-    [id]
-  );
-
-  useEffect(() => {
-    setLoading(true);
-    setNote(id);
-  }, []);
+  const allTags = useSelector((state) => state.allTags);
 
   return (
     <>
@@ -97,7 +72,7 @@ const EditReactNote = () => {
       </Backdrop>
       <Box className="AddNotesForm">
         <Box className="wrapper">
-          <Typography component="h3">Edit Notes</Typography>
+          <Typography component="h3">Add Notes</Typography>
           <form onSubmit={formik.handleSubmit}>
             <Box className="form-elements">
               {/* title  */}
@@ -152,7 +127,7 @@ const EditReactNote = () => {
                 ""
               )}
 
-              <Button type="submit">Edit Note</Button>
+              <Button type="submit">Create Note</Button>
             </Box>
           </form>
         </Box>
@@ -161,4 +136,4 @@ const EditReactNote = () => {
   );
 };
 
-export default EditReactNote;
+export default AddNotes;

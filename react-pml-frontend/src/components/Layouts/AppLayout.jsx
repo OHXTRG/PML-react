@@ -9,14 +9,14 @@ const AppLayout = () => {
     <>
       <Header />
       <Box className="appMain flex">
-        <Box className="w-[200px] h-full">
+        {/* <Box className="w-[200px] h-full">
           <Sidebar />
         </Box>
-        <Box className="grow h-full overflow-auto">
-          <Container>
-            <Outlet />
-          </Container>
-        </Box>
+        <Box className="grow h-full overflow-auto"> */}
+        <Container>
+          <Outlet />
+        </Container>
+        {/* </Box> */}
       </Box>
     </>
   );

@@ -1,11 +1,4 @@
-import {
-  IconButton,
-  styled,
-  TextField,
-  Box,
-  InputAdornment,
-} from "@mui/material";
-import { useEffect, useState } from "react";
+import { styled, TextField, InputAdornment } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
@@ -18,7 +11,6 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   },
   "& .MuiInputBase-root": {
     borderRadius: 8,
-    // backgroundColor: "#f9f9f9",
   },
   "& .MuiOutlinedInput-root": {
     "& .MuiInputAdornment-root": {

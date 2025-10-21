@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 const Index = () => {
   const noteModules = useSelector((state) => state.noteModules);
   const navigate = useNavigate();
+  console.log("side bar side bar", noteModules);
   return (
     <Box className="w-full h-full overflow-auto">
       <Box className="w-full">

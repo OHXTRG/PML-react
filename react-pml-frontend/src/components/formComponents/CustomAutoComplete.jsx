@@ -1,7 +1,6 @@
 import React from "react";
 import { Autocomplete, TextField, Chip } from "@mui/material";
 const CustomAutoComplete = ({ options, formik }) => {
-  //   console.log(options, "sdjlkfjl options");
   return (
     <div style={{ marginBottom: "20px" }}>
       <Autocomplete

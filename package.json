@@ -18,7 +18,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd react-pml-frontend && npm ci && npm run build && cp -r build ../node_backend/client",
     "start": "cd node_backend && npm ci && npm run server",
-    "dev": "concurrently \"cd node_backend && npm run dev\" \" cd react-pml-frontend && npm start\""
+    "dev": "concurrently \"cd node_backend && npm run dev\" \" cd react-pml-frontend && npm start\"",
+    "devLocal": "concurrently \"cd node_backend && npm run local\" \"cd react-pml-frontend && npm start\" "
   },
   "dependencies": {
     "concurrently": "^9.2.0",
