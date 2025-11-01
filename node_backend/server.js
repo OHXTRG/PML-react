@@ -4,6 +4,7 @@ const environment = process.env.NODE_ENV;
 console.log(`using environment ${environment}`);
 if (environment) {
   const envPath = path.resolve(`.env.${environment}`);
+  console.log("custome path:", envPath);
   dotenv.config({
     path: envPath,
   });
