@@ -37,7 +37,7 @@ cp -r react-pml-frontend/build node_backend/client/
 
 echo "🚀 Starting server in production mode..."
 cd node_backend
-cross-env NODE_ENV=production node server.js
+npx cross-env NODE_ENV=production node server.js
 
 # Switch back to your original branch
 echo "🔁 Switching back to your branch: $CURRENT_BRANCH"
