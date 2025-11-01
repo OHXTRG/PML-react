@@ -20,7 +20,7 @@ const server = http.createServer(app);
 (async () => {
   try {
     await connectMongoDb(process.env.DB_URL);
-    console.log(`Connected with db ${process.env.DB_URL}`);
+    console.log(`Connected with db mongodb`);
     initSocket(server);
     server.listen(process.env.PORT, () =>
       console.log(`server is listening to port ${process.env.PORT}`)
