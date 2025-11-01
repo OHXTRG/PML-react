@@ -45,7 +45,11 @@ const AddNoteModule = () => {
       console.log(values, "the new note module values ");
       try {
         setLoading(true);
-        const data = await addNoteModule(values);
+        const payloadValues = {
+          title: values.title.toLowerCase(),
+          description: values.description,
+        };
+        const data = await addNoteModule(payloadValues);
         if (data.success) {
           toast.success(data.message);
           dispatch(fetchNoteModules());
